@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const CommentForm: React.FC = () => {
@@ -16,16 +15,18 @@ const CommentForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Title:</label>
+        <label htmlFor="title">Title:</label>
         <input
+          id="title"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
       <div>
-        <label>Body:</label>
+        <label htmlFor="body">Body:</label>
         <textarea
+          id="body"
           value={body}
           onChange={(e) => setBody(e.target.value)}
         ></textarea>

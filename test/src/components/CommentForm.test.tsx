@@ -1,7 +1,7 @@
-
 import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import CommentForm from './CommentForm';
+import '@testing-library/jest-dom';
+import CommentForm from './CommentForm'; 
+import React from 'react';
 
 describe('CommentForm', () => {
   beforeEach(() => {
@@ -31,8 +31,8 @@ describe('CommentForm', () => {
     // Mock localStorage
     const setItemMock = jest.spyOn(Storage.prototype, 'setItem');
     const { getByLabelText, getByText } = render(<CommentForm />);
-    const titleInput = getByLabelText(/Title/i) as HTMLInputElement;
-    const bodyTextarea = getByLabelText(/Body/i) as HTMLTextAreaElement;
+    const titleInput = getByLabelText(/title/i) as HTMLInputElement;
+    const bodyTextarea = getByLabelText(/body/i) as HTMLTextAreaElement;
     const submitButton = getByText(/Post Comment/i);
 
     fireEvent.change(titleInput, { target: { value: 'Test Title' } });
@@ -44,7 +44,7 @@ describe('CommentForm', () => {
       JSON.stringify({ title: 'Test Title', body: 'Test Body' })
     );
 
-    const storedComment = JSON.parse(localStorage.getItem(setItemMock.mock.calls[0][0]) || '{}');
+    const storedComment = JSON.parse(localStorage.getItem(setItemMock.mock.calls[0][0]) ?? '{}');
     expect(storedComment.title).toBe('Test Title');
     expect(storedComment.body).toBe('Test Body');
   });

@@ -30,7 +30,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build-and-test
-    if: success() # Only deploy if tests pass
+    if: success() 
 
     steps:
     - name: Checkout code
